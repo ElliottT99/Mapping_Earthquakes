@@ -29,7 +29,7 @@ let baseMaps = {
 let map = L.map('mapid', {
   center: [43.7, -79.3],
   zoom: 11,
-  layers: [satelliteStreets]
+  layers: [streets]
 });
 
 // Pass our map layers into our layers control and add the layers control to the map.
@@ -40,8 +40,8 @@ let torontoHoods = "https://raw.githubusercontent.com/ElliottT99/Mapping_Earthqu
 
 // Create a style for the lines.
 let myStyle = {
-  color: "#ffffa1",
-  weight: 2
+  color: "blue",
+  weight: 1
 }
 
 // Grabbing our GeoJSON data.
@@ -57,14 +57,14 @@ L.geoJson(data, {
     layer.bindPopup("<h2>Airport Code: "+ feature.properties.faa + "</h2> <hr> <h3>Airport name: " + feature.properties.name + "</h3>")
   }})
 .addTo(map);
-
+*/
 L.geoJson(data, {
   style: myStyle,
   onEachFeature: function(feature, layer){
-    layer.bindPopup("<h2>Airline: "+ feature.properties.airline + "</h2> <hr> <h3>Destination: " + feature.properties.dst + "</h3>")
+    layer.bindPopup("<h2>Neighborhood: "+ feature.properties.AREA_NAME)
   }
 }).addTo(map);
-*/
+
 });
 
 // Then we add our 'graymap' tile layer to the map.
