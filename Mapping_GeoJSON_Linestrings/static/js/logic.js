@@ -38,6 +38,12 @@ L.control.layers(baseMaps).addTo(map);
 // Accessing the airport GeoJSON URL
 let torontoData = "https://raw.githubusercontent.com/ElliottT99/Mapping_Earthquakes/main/torontoRoutes.json";
 
+// Create a style for the lines.
+let myStyle = {
+  color: "#ffffa1",
+  weight: 2
+}
+
 // Grabbing our GeoJSON data.
 d3.json(torontoData).then(function(data) {
   console.log(data);
@@ -49,7 +55,12 @@ L.geoJson(data, {
   }})
 .addTo(map);
 */
-l.geoJson(data).addTo(map);
+L.geoJson(data, {
+  style: myStyle,
+  onEachFeature: function(feature, layer){
+    layer.bindPopup("<h2>Airline: "+ feature.properties.airline + "</h2> <hr> <h3>Destination: " + feature.properties.dst + "</h3>")
+  }
+}).addTo(map);
 });
 
 // Then we add our 'graymap' tile layer to the map.
